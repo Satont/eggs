@@ -359,18 +359,12 @@ export async function publish(options: Options, name?: string) {
   if (options.dryRun) {
     return;
   }
-  let uploadResponse
-  try {
-   uploadResponse = await postPublishModule(apiKey, module);
+   const uploadResponse = await postPublishModule(apiKey, module);
    if (!uploadResponse) {
      // TODO(@qu4k): provide better error reporting
      console.log(uploadResponse)
      throw new Error("Something broke when publishing... ");
    }
-
-  } catch (e) {
-    console.error(e)
-  }
 
   const pieceResponse = await postPieces(
     uploadResponse.token,
