@@ -359,9 +359,9 @@ export async function publish(options: Options, name?: string) {
   if (options.dryRun) {
     return;
   }
-
+  let uploadResponse
   try {
-   const uploadResponse = await postPublishModule(apiKey, module);
+   uploadResponse = await postPublishModule(apiKey, module);
    if (!uploadResponse) {
      // TODO(@qu4k): provide better error reporting
      console.log(uploadResponse)
