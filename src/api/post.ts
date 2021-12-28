@@ -23,7 +23,8 @@ export async function postResource<T>(
     if (!response || !response.ok) return undefined;
     const value = await response.json();
     return value as T;
-  } catch {
+  } catch (e) {
+    console.log(e)
     return undefined;
   }
 }
